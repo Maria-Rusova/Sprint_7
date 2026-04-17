@@ -37,30 +37,22 @@ def created_courier():
     with allure.step("Очистка данных: курьер удалён"):
         if courier_info['id'] is not None:
             delete_response = ApiClient.delete_courier(courier_info['id'])
-            
-            allure.attach(
-                body=f"ID курьера: {courier_info['id']}",
-                name="Удаляемый курьер",
-                attachment_type=allure.attachment_type.TEXT
-            )
-            allure.attach(
-                body=delete_response.text,
-                name="Ответ сервера при удалении",
-                attachment_type=allure.attachment_type.TEXT
-            )
-            allure.attach(
-                body=str(delete_response.status_code),
-                name="Статус-код при удалении",
-                attachment_type=allure.attachment_type.TEXT
-            )
-        else:
-            allure.attach(
-                body="ID курьера не был получен, удаление пропущено",
-                name="Статус очистки",
-                attachment_type=allure.attachment_type.TEXT
-            )
 
-def ara (response): # attach response to allure
+            with allure.step(f"Статус-код при удалении: {delete_response.status_code}"):
+                pass
+
+            with allure.step("Ответ сервера при удалении"):
+                allure.attach(
+                    body=delete_response.text,
+                    name="Ответ сервера при удалении",
+                    attachment_type=allure.attachment_type.TEXT
+                )
+        else:
+            with allure.step("ID курьера не был получен, удаление пропущено"):
+                pass
+            
+
+def attach_response_to_allure (response):
     with allure.step("Ответ сервера"):
         allure.attach(
             body=response.text,

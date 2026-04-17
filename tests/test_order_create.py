@@ -1,6 +1,6 @@
 import pytest
 import allure
-from conftest import ara
+from conftest import attach_response_to_allure
 from helpers.faker_data import generate_order_payload
 from helpers.api_client import ApiClient
 from helpers.api_constants import ApiData
@@ -19,7 +19,8 @@ class TestOrderCreation:
     def test_create_order_with_color(self, color):
         payload = generate_order_payload(color=color)       
         response = ApiClient.create_order(payload)
-        ara(response)
+        attach_response_to_allure(response)
         response_json = response.json()
         assert response.status_code == ApiData.HTTP_STATUS_CREATED
-        assert ApiData.RESP_FIELD_TRACK in str(response_json)
+        assert ApiData.RESP_FIELD_TRACK in response_json
+

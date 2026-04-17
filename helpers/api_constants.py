@@ -14,7 +14,7 @@ class ApiData:
     HTTP_STATUS_BAD_REQUEST = 400
 
     # Сообщения об ошибках
-    ERROR_LOGIN_ALREADY_USED = 'Этот логин уже используется'
+    ERROR_LOGIN_ALREADY_USED = 'Этот логин уже используется. Попробуйте другой.'
     ERROR_ACCOUNT_NOT_FOUND = 'Учетная запись не найдена'
     ERROR_MISSING_DATA = 'Недостаточно данных для входа'
     ERROR_INSUFFICIENT_DATA = "Недостаточно данных для создания учетной записи"

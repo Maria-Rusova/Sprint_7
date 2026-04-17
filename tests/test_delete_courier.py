@@ -1,5 +1,5 @@
 import allure
-from conftest import ara
+from conftest import attach_response_to_allure
 from helpers.api_client import ApiClient
 from helpers.api_constants import ApiData
 
@@ -11,7 +11,7 @@ class TestCourierDeletion:
     def test_delete_courier_success(self, created_courier):
         courier_id = created_courier['id']
         response = ApiClient.delete_courier(courier_id)
-        ara(response)
+        attach_response_to_allure(response)
         response_json = response.json()
         assert response.status_code == ApiData.HTTP_STATUS_OK
         assert response_json == ApiData.RESP_OK
